@@ -17,6 +17,7 @@ return {
 				"cssls",
 				"jsonls",
 				"lua_ls",
+				"clangd",
 			},
 			handlers = {
 				function(server_name)

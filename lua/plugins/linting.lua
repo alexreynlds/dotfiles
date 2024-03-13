@@ -13,6 +13,7 @@ return {
 			javascriptreact = { "eslint_d" },
 			typesciptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
+			cpp = { "cpplint" },
 			python = { "pylint" },
 		}
 
