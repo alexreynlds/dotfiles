@@ -5,8 +5,13 @@ return {
 	priority = 1000,
 	config = function()
 		require("catppuccin").setup({
-			flavour = "frappe",
-			transparent_background = true,
+			flavour = "mocha",
+			transparent_background = false,
+			term_colors = false,
+			integrations = {
+				nvimtree = true,
+				treesitter = true,
+			},
 		})
 		vim.cmd.colorscheme("catppuccin")
 	end,
