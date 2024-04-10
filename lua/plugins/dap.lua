@@ -3,6 +3,7 @@ return {
 		"jay-babu/mason-nvim-dap.nvim",
 		dependencies = {
 			"williamboman/mason.nvim",
+			"nvim-neotest/nvim-nio",
 			"mfussenegger/nvim-dap",
 		},
 		event = "VeryLazy",
