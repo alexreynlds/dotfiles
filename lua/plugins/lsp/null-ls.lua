@@ -24,7 +24,7 @@ return {
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-		local python_dir = "/opt/homebrew/bin/python3"
+		local python_exe = "/opt/homebrew/bin/python3"
 
 		null_ls.setup({
 			root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
@@ -34,7 +34,7 @@ return {
 				formatting.isort,
 				formatting.black,
 				diagnostics.pylint.with({
-					command = python_dir .. " -m pylint",
+					command = python_exe .. " -m pylint",
 				}),
 				formatting.prettierd,
 				formatting.clang_format,
