@@ -1,6 +1,6 @@
 return {
 	"goolord/alpha-nvim",
-	lazy = false,
+	event = "VimEnter",
 	cmd = "Alpha", -- Specify the command to open the Alpha dashboard
 
 	config = function()
@@ -15,14 +15,16 @@ return {
 		dashboard.section.terminal.opts.redraw = true
 		dashboard.section.terminal.command = "cat ~/.config/nvim/lua/plugins/Ayanami.txt"
 		dashboard.section.terminal.width = 59
-		dashboard.section.terminal.height = 32
+		dashboard.section.terminal.height = 30
 		dashboard.section.terminal.opts.window_config.border = "rounded"
 
 		-- Setup other sections
 		dashboard.section.header.val = "foo"
 		dashboard.section.buttons.val = {
 			dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-			dashboard.button("q", "  Quit NVIM", ":qa<CR>"),
+			dashboard.button("SPC n", "  Toggle file explorer", ":Neotree toggle left<CR>"),
+			dashboard.button("SPC pf", "  Find file", ":Telescope find_files<CR>"),
+			dashboard.button("q", "󰩈  Quit NVIM", ":qa<CR>"),
 		}
 
 		local stats = require("lazy").stats()
@@ -32,14 +34,14 @@ return {
 		pcall(vim.cmd.AlphaRedraw)
 		-- Setup the layout
 		dashboard.opts.layout = {
-			{ type = "padding", val = 2 },
 			dashboard.section.terminal,
-			{ type = "padding", val = 2 },
+			{ type = "padding", val = 3 },
 			dashboard.section.buttons,
 			dashboard.section.footer,
 		}
 
 		-- Apply the configuration
 		alpha.setup(dashboard.config)
+		vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
 	end,
 }
