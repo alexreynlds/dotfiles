@@ -12,6 +12,16 @@ return {
 			svelte = { "eslint_d" },
 			python = { "pylint" },
 		}
+		local pylint = lint.linters.pylint
+		pylint.args = {
+			"--python=/opt/homebrew/bin/python3",
+			"--disable=specific_check",
+			"--enable=specific_check",
+			"--msg-template='{path}:{line}:{column}: {msg_id}: {msg}'",
+		}
+
+		-- Add or modify pylint args as needed
+		table.insert(pylint.args, "--disable=another_specific_check")
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
