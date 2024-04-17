@@ -12,6 +12,7 @@ return {
 		"nvim-lua/plenary.nvim",
 	},
 
+	-- Keybindings
 	keys = {
 		{ "<leader>lg", "<cmd>LazyGit<CR>", desc = "Open LazyGit" },
 	},
