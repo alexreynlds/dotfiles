@@ -10,11 +10,24 @@ return {
 		},
 		config = function()
 			local builtin = require("telescope.builtin")
+			local actions = require("telescope.actions")
 			vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Telescope Find Files" })
 			vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Telescope Find Recent" })
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope Live Grep" })
 			vim.keymap.set("n", "<leader>tc", ":Telescope commands<CR>", { noremap = true, silent = true })
 			vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
+
+			require("telescope").setup({
+				defaults = {
+					mappings = {
+						i = {
+							["<esc>"] = actions.close,
+							["<C-j>"] = actions.move_selection_next,
+							["<C-k>"] = actions.move_selection_previous,
+						},
+					},
+				},
+			})
 
 			local telescope = require("telescope")
 			telescope.load_extension("fzf")
@@ -32,5 +45,5 @@ return {
 			})
 			require("telescope").load_extension("ui-select")
 		end,
-	},
+	}, -- added comma here
 }
