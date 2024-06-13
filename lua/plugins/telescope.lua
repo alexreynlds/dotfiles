@@ -7,13 +7,20 @@ return {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"nvim-tree/nvim-web-devicons",
 			"folke/todo-comments.nvim",
+			"nvim-telescope/telescope-live-grep-args.nvim",
 		},
 		config = function()
 			local builtin = require("telescope.builtin")
 			local actions = require("telescope.actions")
+			local telescope = require("telescope")
+
 			vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Telescope Find Files" })
 			vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = "Telescope Find Recent" })
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope Live Grep" })
+			vim.keymap.set(
+				"n",
+				"<leader>fg",
+				":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
+			)
 			vim.keymap.set("n", "<leader>tc", ":Telescope commands<CR>", { noremap = true, silent = true })
 			vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
 
@@ -29,8 +36,8 @@ return {
 				},
 			})
 
-			local telescope = require("telescope")
 			telescope.load_extension("fzf")
+			telescope.load_extension("live_grep_args")
 		end,
 	},
 	{

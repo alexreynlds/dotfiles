@@ -28,7 +28,7 @@ return {
 		}
 
 		local stats = require("lazy").stats()
-		local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
+		local ms = math.floor(stats.startuptime + 0.5)
 		dashboard.section.footer.val = { " ", " ", " ", "Loaded " .. stats.count .. " plugins  in " .. ms .. "ms" }
 		dashboard.section.footer.opts.hl = "DashboardFooter"
 		pcall(vim.cmd.AlphaRedraw)
