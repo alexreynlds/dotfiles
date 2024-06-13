@@ -1,0 +1,30 @@
+import = [
+  "~/.config/alacritty/themes/themes/catppuccin_mocha.toml"
+]
+
+[env]
+
+[window]
+decorations = "Buttonless"
+opacity = 0.8
+blur = true
+
+[window.padding]
+x = 5
+y = 5
+
+[font]
+normal.family = "Hack Nerd Font"
+size = 16
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[keyboard]
+# toggle maximized
+bindings = [
+  {key = "F", mods = "Control|Shift", action = "ToggleMaximized"},
+  {key = "6", mods = "Control", chars = "\u001e"}
+]
+
