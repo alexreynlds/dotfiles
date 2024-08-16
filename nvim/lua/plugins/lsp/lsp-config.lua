@@ -13,6 +13,7 @@ return {
 		local lspconfig = require("lspconfig")
 		local mason_lspconfig = require("mason-lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		local util = require("lspconfig/util") -- Import util module
 
 		local keymap = vim.keymap
 
@@ -30,7 +31,7 @@ return {
 				opts.desc = "Show LSP definitions"
 				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
 
-				opts.desc = "Show LSP implmentations"
+				opts.desc = "Show LSP implementations"
 				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 
 				opts.desc = "Show LSP type definitions"
@@ -130,6 +131,25 @@ return {
 					on_attach = function(client, bufnr)
 						vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 					end,
+				})
+			end,
+			["eslint"] = function()
+				-- configure eslint server
+				lspconfig["eslint"].setup({
+					capabilities = capabilities,
+					root_dir = util.root_pattern(
+						".eslintrc",
+						".eslintrc.js",
+						".eslintrc.cjs",
+						".eslintrc.yaml",
+						".eslintrc.yml",
+						".eslintrc.json",
+						"package.json", -- Add package.json as a fallback
+						".git" -- Use the .git directory as a fallback root
+					),
+					settings = {
+						-- Optional settings for eslint
+					},
 				})
 			end,
 		})

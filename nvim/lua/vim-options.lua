@@ -16,3 +16,12 @@ vim.cmd("set ignorecase")
 vim.cmd("set smartcase")
 
 vim.cmd("set backspace")
+
+vim.cmd("set cursorline")
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	command = [[hi clear CursorLine]],
+})
+vim.api.nvim_create_autocmd("ColorScheme", {
+	command = [[hi CursorLine gui=underline cterm=underline]],
+})

@@ -5,7 +5,11 @@ return {
 		"hrsh7th/nvim-cmp",
 	},
 	config = function()
-		require("nvim-ts-autotag").setup()
+		require("nvim-ts-autotag").setup({
+			opts = {
+				enable_rename = false,
+			},
+		})
 		local cmp = require("cmp")
 		cmp.setup.buffer({
 			sources = {
