@@ -10,14 +10,12 @@ return {
 				indent = { enable = true },
 				ensure_installed = {
 					"javascript",
-					--      "html",
-					-- "json",
-					-- "lua",
-					-- "python",
-					-- "rust",
-					-- "yaml",
-					-- "toml",
+					"lua",
+					"c_sharp",
+					"cpp",
+					"c",
 					"tsx", -- Add this line for JSX/TSX support
+					"python",
 				},
 			})
 		end,

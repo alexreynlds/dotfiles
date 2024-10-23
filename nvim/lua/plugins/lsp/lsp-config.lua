@@ -128,9 +128,7 @@ return {
 				-- configure clangd server
 				lspconfig["clangd"].setup({
 					capabilities = capabilities,
-					on_attach = function(client, bufnr)
-						vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-					end,
+					filetypes = { "c", "cpp", "objc", "objcpp" },
 				})
 			end,
 			["eslint"] = function()
