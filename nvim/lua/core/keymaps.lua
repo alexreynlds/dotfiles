@@ -1,5 +1,7 @@
 -- Keymaps
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("x", "<leader>p", '"_dP')
@@ -16,3 +18,6 @@ vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Vertical split" })
 vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Horizontal split" })
 vim.keymap.set("n", "<leader>se", ":wincmd =<CR>", { desc = "Equalize splits" })
 vim.keymap.set("n", "<leader>sx", ":q<CR>", { desc = "Exit split" })
+
+vim.api.nvim_set_keymap("n", ":", "<cmd>FineCmdline<CR>", { noremap = true })
+

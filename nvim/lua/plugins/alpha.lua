@@ -1,47 +1,76 @@
 return {
 	"goolord/alpha-nvim",
 	event = "VimEnter",
-	cmd = "Alpha", -- Specify the command to open the Alpha dashboard
-
 	config = function()
 		local alpha = require("alpha")
 		local dashboard = require("alpha.themes.dashboard")
-		require("alpha.term")
+		_G.opts = {
+			position = "center",
+			hl = "Type",
+			wrap = "overflow",
+		}
 
-		-- Setup the dashboard options
-		dashboard.opts.noautocmd = true
+		local function load_random_header()
+			math.randomseed(os.time())
+			local header_folder = vim.fn.expand("$HOME/.config/nvim/lua/assets/header_img")
+			local files = vim.fn.globpath(header_folder, "*.lua", true, true)
+			if #files == 0 then
+				return nil
+			end
+			local random_file = files[math.random(#files)]
+			-- Extract the module path relative to 'lua' directory
+			local module_path = random_file:match("lua/(.*)%.lua")
+			local module_name = module_path:gsub("/", ".")
+			-- Debug print to verify the module name
+			print("Module name: " .. module_name)
+			return require(module_name).header
+		end
 
-		-- Setup the terminal section
-		dashboard.section.terminal.opts.redraw = true
-		dashboard.section.terminal.command = "cat ~/.config/nvim/lua/plugins/Ayanami.txt"
-		dashboard.section.terminal.width = 59
-		dashboard.section.terminal.height = 30
-		dashboard.section.terminal.opts.window_config.border = "rounded"
+		local function change_header()
+			local new_header = load_random_header()
+			if new_header then
+				dashboard.config.layout[2] = new_header
+				vim.cmd("AlphaRedraw") -- Reload dashboard
+			else
+				print("No header files in header_img folder.")
+			end
+		end
 
-		-- Setup other sections
-		dashboard.section.header.val = "foo"
+		-- Initial header loading
+		local header = load_random_header()
+		if header then
+			dashboard.config.layout[2] = header
+		else
+			print("No header files in header_img folder.")
+		end
+
 		dashboard.section.buttons.val = {
-			dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-			dashboard.button("SPC n", "  Toggle file explorer", ":Neotree toggle left<CR>"),
-			dashboard.button("SPC pf", "  Find file", ":Telescope find_files<CR>"),
-			dashboard.button("q", "󰩈  Quit NVIM", ":qa<CR>"),
+			dashboard.button("r", "󰄉  Recent files", ":Telescope oldfiles <CR>"),
+			dashboard.button("u", "󱐥  Update plugins", "<cmd>Lazy update<CR>"),
+			dashboard.button("p", "  Projects", ":e $HOME/Developer/ <CR>"),
+			dashboard.button("w", "  Change header image", function()
+				change_header()
+			end),
 		}
 
-		local stats = require("lazy").stats()
-		local ms = math.floor(stats.startuptime + 0.5)
-		dashboard.section.footer.val = { " ", " ", " ", "Loaded " .. stats.count .. " plugins  in " .. ms .. "ms" }
-		dashboard.section.footer.opts.hl = "DashboardFooter"
-		pcall(vim.cmd.AlphaRedraw)
-		-- Setup the layout
-		dashboard.opts.layout = {
-			dashboard.section.terminal,
-			{ type = "padding", val = 3 },
-			dashboard.section.buttons,
-			dashboard.section.footer,
-		}
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "LazyVimStarted",
+			desc = "Add Alpha dashboard footer",
+			once = true,
+			callback = function()
+				local stats = require("lazy").stats()
+				local ms = math.floor(stats.startuptime * 100 + 0.5) / 100
+				dashboard.section.footer.val = {
+					" ",
+					" Loaded " .. stats.count .. " plugins  in " .. ms .. " ms ",
+				}
+				dashboard.section.header.opts.hl = "DashboardFooter"
+				pcall(vim.cmd.AlphaRedraw)
+			end,
+		})
 
-		-- Apply the configuration
-		alpha.setup(dashboard.config)
-		vim.cmd([[autocmd FileType alpha setlocal nofoldenable]])
+		dashboard.opts.opts.noautocmd = true
+		alpha.setup(dashboard.opts)
 	end,
 }
+

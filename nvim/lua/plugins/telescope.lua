@@ -54,3 +54,4 @@ return {
 		end,
 	}, -- added comma here
 }
+
