@@ -17,4 +17,3 @@ return {
 		{ "<leader>lg", "<cmd>LazyGit<CR>", desc = "Open LazyGit" },
 	},
 }
-

@@ -1,0 +1,33 @@
+# ghostty +show-config --default --docs
+# ghostty +list-themes
+
+font-family                    = Hack Nerd Font 
+
+font-feature                   = calt
+font-feature                   = liga
+font-feature                   = ss13
+
+font-size                      = 10
+window-inherit-font-size       = true
+
+# Look and Feel
+adjust-cursor-thickness        = 3
+adjust-underline-position      = 3
+bold-is-bright                 = true
+cursor-invert-fg-bg            = true
+cursor-opacity                 = 0.8
+link-url                       = true
+mouse-hide-while-typing        = true
+theme			       = "/home/alex/Documents/tokyonight_moon.txt"
+window-vsync                   = true
+
+confirm-close-surface = false
+window-inherit-font-size       = true
+
+window-decoration = none
+window-padding-balance = true
+macos-titlebar-style = hidden
+window-padding-y = 2,2 
+window-padding-x = 2,2
+clipboard-read = "allow"
+background-opacity = 1

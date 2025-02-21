@@ -5,7 +5,7 @@ return {
 		local lazy_status = require("lazy.status")
 		require("lualine").setup({
 			options = {
-        theme = 'tokyonight',
+        theme = 'tokyonight-moon',
 				component_separators = "",
 				section_separators = { left = "", right = "" },
 			},
