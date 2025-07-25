@@ -9,6 +9,7 @@ vim.cmd("set nowrap")
 vim.cmd("set updatetime=50")
 vim.cmd("set conceallevel=1")
 vim.cmd("set wildmenu")
+vim.cmd("set noswapfile")
 
 -- Search settings
 vim.cmd("set ignorecase")
@@ -29,7 +30,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -78,7 +79,12 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
 vim.opt.scrolloff = 10
+vim.opt.signcolumn = "yes"
+
+vim.opt.fillchars:append({ eob = " " })
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
