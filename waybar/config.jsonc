@@ -1,0 +1,168 @@
+// -*- mode: jsonc -*-
+{
+  "output": "DP-2",
+  // "layer": "top", // waybar at top layer
+  // "position": "bottom", // waybar position (top|bottom|left|right)
+  "height": 32, // waybar height (to be removed for auto height)
+  "margin-top": 14,
+  // "spacing": 8,
+  "width": 1680, // waybar width
+  // choose the order of the modules
+  "modules-left": [
+    "tray",
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-right": [
+    "custom/spotify",
+    "mpd",
+    "pulseaudio",
+    "custom/network-speed",
+    "power-profiles-daemon",
+    "clock"
+  ],
+  // modules configuration
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  "sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": [
+      "",
+      ""
+    ],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}"
+  },
+  "mpd": {
+    "format": "{stateicon} {consumeicon}{randomicon}{repeaticon}{singleicon}{artist} - {album} - {title} ({elapsedtime:%m:%s}/{totaltime:%m:%s}) ⸨{songposition}|{queuelength}⸩ {volume}% ",
+    "format-disconnected": "disconnected ",
+    "format-stopped": "{consumeicon}{randomicon}{repeaticon}{singleicon}stopped ",
+    "unknown-tag": "n/a",
+    "interval": 5,
+    "consume-icons": {
+      "on": " "
+    },
+    "random-icons": {
+      "off": "<span color=\"#f53c3c\"></span> ",
+      "on": " "
+    },
+    "repeat-icons": {
+      "on": " "
+    },
+    "single-icons": {
+      "on": "1 "
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "tooltip-format": "mpd (connected)",
+    "tooltip-format-disconnected": "mpd (disconnected)"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "tray": {
+    // "icon-size": 21,
+    "spacing": 10,
+    // "icons": {
+    //   "blueman": "bluetooth",
+    //   "telegramdesktop": "$home/.local/share/icons/hicolor/16x16/apps/telegram.png"
+    // }
+  },
+  "clock": {
+    // "timezone": "america/new_york",
+    "tooltip-format": "<big>{:%y %b}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%y-%m-%d}"
+  },
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "{}% "
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "power profile: {profile}\ndriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "pavucontrol"
+  },
+  "custom/media": {
+    "format": "{icon} {text}",
+    "return-type": "json",
+    "max-length": 40,
+    "format-icons": {
+      "spotify": "",
+      "default": "🎜"
+    },
+    "escape": true,
+    "exec": "$home/.config/waybar/mediaplayer.py 2> /dev/null" // script in resources folder
+    // "exec": "$home/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // filter player based on name
+  },
+  "custom/power": {
+    "format": "⏻ ",
+    "tooltip": false,
+    "menu": "on-click",
+    "menu-file": "$home/.config/waybar/power_menu.xml", // menu file in resources folder
+    "menu-actions": {
+      "shutdown": "shutdown",
+      "reboot": "reboot",
+      "suspend": "systemctl suspend",
+      "hibernate": "systemctl hibernate"
+    }
+  },
+  "custom/network-speed": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/net_speed.sh",
+    "interval": 1
+  },
+  "custom/spotify": {
+    "exec": "/usr/bin/python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
+    "format": "{}  ",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  }
+}
