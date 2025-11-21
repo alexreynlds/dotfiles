@@ -1,6 +1,6 @@
 * {
   /* `otf-font-awesome` is required to be installed for icons */
-  font-family: 'JetBrainsMono Nerd Font Propo', sans-serif;
+  font-family: "JetBrainsMono Nerd Font Propo", sans-serif;
   font-size: 13px;
   font-weight: bold;
   border-radius: 10px;
@@ -11,7 +11,7 @@ window#waybar {
   /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
   color: #ffffff;
   transition-property: background-color;
-  transition-duration: .5s;
+  transition-duration: 0.5s;
 }
 
 window#waybar.hidden {
@@ -19,7 +19,7 @@ window#waybar.hidden {
 }
 
 window#waybar.termite {
-  background-color: #3F3F3F;
+  background-color: #004687;
 }
 
 window#waybar.chromium {
@@ -28,7 +28,7 @@ window#waybar.chromium {
 }
 
 #window {
-  background-color: #B91E73;
+  background-color: #004687;
   padding: 10px;
 }
 
@@ -48,13 +48,13 @@ button:hover {
 
 /* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-  background-color: #B91E73;
+  background-color: #004687;
 }
 
 #workspaces {
   padding: 0px 10px;
   /* background-color: #B91E73; */
-  border: 4px solid #B91e73;
+  border: 4px solid #004687;
 }
 
 #workspaces button {
@@ -65,7 +65,7 @@ button:hover {
 
 #workspaces button.active {
   padding: 0 5px;
-  background-color: #E678D0;
+  background-color: #004687;
   color: #ffffff;
 }
 
@@ -74,7 +74,7 @@ button:hover {
 }
 
 #workspaces button.focused {
-  background-color: #ff79c6;
+  background-color: #004687;
   /* bright pink */
   color: #000000;
   /* optional: text color */
@@ -86,7 +86,7 @@ button:hover {
 }
 
 #mode {
-  background-color: #64727D;
+  background-color: #64727d;
   box-shadow: inset 0 -3px #ffffff;
 }
 
@@ -118,17 +118,17 @@ button:hover {
 }
 
 /* If workspaces is the leftmost module, omit left margin */
-.modules-left>widget:first-child>#workspaces {
+.modules-left > widget:first-child > #workspaces {
   margin-left: 0;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
-.modules-right>widget:last-child>#workspaces {
+.modules-right > widget:last-child > #workspaces {
   margin-right: 0;
 }
 
 #clock {
-  background-color: #9F3781;
+  background-color: #004687;
 }
 
 #battery {
@@ -139,7 +139,7 @@ button:hover {
 #battery.charging,
 #battery.plugged {
   color: #ffffff;
-  background-color: #26A65B;
+  background-color: #26a65b;
 }
 
 @keyframes blink {
@@ -165,7 +165,7 @@ button:hover {
 }
 
 #power-profiles-daemon.performance {
-  background-color: #9F3781;
+  background-color: #9f3781;
   color: #ffffff;
 }
 
@@ -193,7 +193,7 @@ label:focus {
 }
 
 #disk {
-  background-color: #964B00;
+  background-color: #964b00;
 }
 
 #backlight {
@@ -209,11 +209,11 @@ label:focus {
 }
 
 #pulseaudio {
-  background-color: #9F3781;
+  background-color: #004687;
 }
 
 #pulseaudio.muted {
-  background-color: #9F3781;
+  background-color: #004687;
   color: #2a5c45;
 }
 
@@ -249,16 +249,16 @@ label:focus {
 }
 
 #tray {
-  background-color: #2980b9;
+  background-color: #004687;
 }
 
-#tray>.passive {
+#tray > .passive {
   -gtk-icon-effect: dim;
 }
 
-#tray>.needs-attention {
+#tray > .needs-attention {
   -gtk-icon-effect: highlight;
-  background-color: #eb4d4b;
+  background-color: #004687;
 }
 
 #idle_inhibitor {
@@ -303,11 +303,11 @@ label:focus {
   min-width: 16px;
 }
 
-#keyboard-state>label {
+#keyboard-state > label {
   padding: 0 5px;
 }
 
-#keyboard-state>label.locked {
+#keyboard-state > label.locked {
   background: rgba(0, 0, 0, 0.2);
 }
 
@@ -329,25 +329,33 @@ label:focus {
 }
 
 #privacy-item.screenshare {
-  background-color: #cf5700;
+  background-color: #004687;
 }
 
 #privacy-item.audio-in {
-  background-color: #1ca000;
+  background-color: #004687;
 }
 
 #privacy-item.audio-out {
-  background-color: #0069d4;
+  background-color: #004687;
 }
 
 #custom-network-speed {
-  background-color: #9F3781;
+  background-color: #004687;
   padding: 10px;
 }
 
 .custom-spotify {
   padding: 0 10px;
   margin: 0 4px;
-  background-color: #9F3781;
+  background-color: #004687;
   color: white;
+}
+
+#custom-work_hours {
+  background-color: #004687;
+  color: white;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-weight: bold;
 }
